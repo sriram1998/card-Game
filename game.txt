@@ -1,0 +1,20 @@
+//index
+{
+	coding: 90,
+	marketing: 80,
+	security: 70,
+	design: 90,
+	spm: 60
+}
+
+
+// Project
+{
+	coding: [90, 70],
+	Marketing: [80, 50],
+	Security: [50, 90],
+	Design: [80, 50],
+	fpm: 100,
+	payout: 90,
+	bidValue: 60
+}

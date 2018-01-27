@@ -10,39 +10,45 @@
 <div id="row" class="row"></div>
 </body>
 <script type="text/javascript">
+    console.log("Hello");
     function createFields(fields) {
         let div4 = document.createElement("div");
         div4.className = "row";
-        for(let i=0; i<fields.length; i++) {
+        for(let i=0; i<fields.length-3; i++) {
             let divName = document.createElement("div");
-            divName.className = "col l6";
+            divName.className = "col l4";
             let pName = document.createElement("P");
             var nodeName = document.createTextNode(fields[i]["name"]);
             pName.appendChild(nodeName);
             divName.appendChild(pName);
 
-            let divWump = document.createElement("div");
-            divWump.className = "col l6";
-            let pWump = document.createElement("P");
-            var nodeWump = document.createTextNode(fields[i]["wump"]);
-            pWump.appendChild(nodeWump);
-            divWump.appendChild(pWump);
+            let divEc = document.createElement("div");
+            divEc.className = "col l4";
+            let pEc = document.createElement("P");
+            var nodeEc = document.createTextNode(fields[i]["Ec"]);
+            pEc.appendChild(nodeEc);
+            divEc.appendChild(pEc);
 
-            if(fields[i]["name"] == "SPM") {
-                div4.appendChild(document.createElement("HR"));
-            }
+            let divUow = document.createElement("div");
+            divUow.className = "col l4";
+            let pUow = document.createElement("P");
+            var nodeUow = document.createTextNode(fields[i]["uow"]);
+            pUow.appendChild(nodeUow);
+            divUow.appendChild(pUow);
 
             div4.appendChild(divName);
-            div4.appendChild(divWump);
+            div4.appendChild(divEc);
+            div4.appendChild(divUow);
         }
         return div4;
     }
 
     function createCard(details) {
+        window.alert("Hello");
         let div = document.getElementById("row");
 
         let div1 = document.createElement("div");
-        div1.className = "col l3";
+        div1.className = "col l4";
 
         let div2 = document.createElement("div");
         div2.className = "card blue-grey darken-1";
@@ -54,25 +60,103 @@
         span.className = "card-title";
         span.textContent = "Startup Tycoon"
 
+        let div35 = document.createElement("div");
+        div35.className = "row";
+
+
+        let titleDiv1 = document.createElement("div");
+        titleDiv1.className = "col l4"; 
+
+        let titleDiv2 = document.createElement("div");
+        titleDiv2.className = "col l4"; 
+
+        let titleDiv3 = document.createElement("div");
+        titleDiv3.className = "col l4";
+
+        let titlecol1 = document.createElement("P");
+        titlecol1.appendChild(document.createTextNode("Qualities"));
+
+        titleDiv1.appendChild(titlecol1);
+
+        let titlecol2 = document.createElement("P");
+        titlecol2.appendChild(document.createTextNode("Eligibility criteria"));
+
+        titleDiv2.appendChild(titlecol2);
+
+        let titlecol3 = document.createElement("P");
+        titlecol3.appendChild(document.createTextNode("Units of work"));
+
+        titleDiv3.appendChild(titlecol3);
+
+        div35.appendChild(titleDiv1);
+        div35.appendChild(titleDiv2);
+        div35.appendChild(titleDiv3);
+
+        var hr  = document.createElement("HR");
         var hr1 = document.createElement("HR");
+        var hr2 = document.createElement("HR");
 
         let fields = [];
+        let counter = 0;
 
         for (detail in details) {
             let dumObj = {
                 name: detail,
-                wump: details[detail]
+                Ec: details[detail][0],
+                uow: details[detail][1]
             };
             fields.push(dumObj)
         }
 
         let div4 = createFields(fields);
 
+        let div45 = document.createElement("div");
+        div45.className = "row";
+
+        let div5 = document.createElement("div");
+        div5.className = "col l4";
+        let p5 = document.createElement("P");
+        var node5 = document.createTextNode("Fine Per minute:- " + details["fpm"]);
+        p5.appendChild(node5);
+        div5.appendChild(p5);
+
+        let div6 = document.createElement("div");
+        div6.className = "col l4";
+        let p6 = document.createElement("P");
+        var node6 = document.createTextNode("Payout:- " + details["payout"]);
+        p6.appendChild(node6);
+        div6.appendChild(p6);
+
+        let div7 = document.createElement("div");
+        div7.className = "col l4";
+        let p7 = document.createElement("P");
+        var node7 = document.createTextNode("Bid Value:- "+ details["bidValue"]);
+        p7.appendChild(node7);
+        div7.appendChild(p7);
+
+        div45.appendChild(div5);
+        div45.appendChild(div6);
+        div45.appendChild(div7);
+
         div3.appendChild(span);
-        div3.appendChild(hr1);
+        div3.appendChild(div35);
+        div3.appendChild(hr);
         div3.appendChild(div4);
+        div3.appendChild(hr1);
+        div3.appendChild(div45);
+
         div2.appendChild(div3);
         div1.appendChild(div2);
         div.appendChild(div1);
     }
+
+    createCard({
+    coding: [90, 70],
+    Marketing: [80, 50],
+    Security: [50, 90],
+    Design: [80, 50],
+    fpm: 100,
+    payout: 90,
+    bidValue: 60
+})
 </script>
