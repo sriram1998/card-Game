@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div id="row" class="row"></div>
+</body>
+<script type="text/javascript">
+    function createFields(fields) {
+        let div4 = document.createElement("div");
+        div4.className = "row";
+        for(let i=0; i<fields.length; i++) {
+            let divName = document.createElement("div");
+            divName.className = "col l6";
+            let pName = document.createElement("P");
+            var nodeName = document.createTextNode(fields[i]["name"]);
+            pName.appendChild(nodeName);
+            divName.appendChild(pName);
+
+            let divWump = document.createElement("div");
+            divWump.className = "col l6";
+            let pWump = document.createElement("P");
+            var nodeWump = document.createTextNode(fields[i]["wump"]);
+            pWump.appendChild(nodeWump);
+            divWump.appendChild(pWump);
+
+            if(fields[i]["name"] == "SPM") {
+                div4.appendChild(document.createElement("HR"));
+            }
+
+            div4.appendChild(divName);
+            div4.appendChild(divWump);
+        }
+        return div4;
+    }
+
+    function createCard(details) {
+        let div = document.getElementById("row");
+
+        let div1 = document.createElement("div");
+        div1.className = "col l3";
+
+        let div2 = document.createElement("div");
+        div2.className = "card blue-grey darken-1";
+
+        let div3 = document.createElement("div");
+        div3.className = "card-content white-text";
+
+        let span = document.createElement('span');
+        span.className = "card-title";
+        span.textContent = "Startup Tycoon"
+
+        var hr1 = document.createElement("HR");
+
+        let fields = [];
+
+        for (detail in details) {
+            let dumObj = {
+                name: detail,
+                wump: details[detail]
+            };
+            fields.push(dumObj)
+        }
+
+        let div4 = createFields(fields);
+
+        div3.appendChild(span);
+        div3.appendChild(hr1);
+        div3.appendChild(div4);
+        div2.appendChild(div3);
+        div1.appendChild(div2);
+        div.appendChild(div1);
+    }
+</script>
